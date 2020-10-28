@@ -37,15 +37,19 @@ _pressed_keys = set()
 def update_modifier_key_pressed(key, action):
     if key in Modifier.get_all_keys():
         if action.is_pressed():
+            print('modifier add: ' + str(key))
             _pressed_modifier_keys.add(key)
         else:
             _pressed_modifier_keys.discard(key)
+            print('modifier discard: ' + str(key))
 
 def update_pressed_keys(key, action):
     if action.is_pressed():
         _pressed_keys.add(key)
+        print('add: ' + str(key))
     else:
         _pressed_keys.discard(key)
+        print('discard: ' + str(key))
 
 def is_pressed(key):
     return key in _pressed_keys

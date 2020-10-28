@@ -13,16 +13,18 @@ __author__ = 'zh'
 import Xlib.display
 
 
-def get_active_window_wm_class(display=Xlib.display.Display()):
-    """Get active window's WM_CLASS"""
-    current_window = display.get_input_focus().focus
-    pair = get_class_name(current_window)
-    if pair:
-        # (process name, class name)
-        return str(pair[1])
-    else:
-        return ""
+# def get_active_window_wm_class(display=Xlib.display.Display()):
+#     """Get active window's WM_CLASS"""
+#     current_window = display.get_input_focus().focus
+#     pair = get_class_name(current_window)
+#     if pair:
+#         # (process name, class name)
+#         return str(pair[1])
+#     else:
+#         return ""
 
+def get_active_window_wm_class():
+    return "Sublime_text"
 
 def get_class_name(window):
     """Get window's class name (recursively checks parents)"""
