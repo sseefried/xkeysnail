@@ -3,6 +3,7 @@
 from evdev import ecodes
 from evdev.uinput import UInput
 from .key import Action, Combo, Modifier
+import time
 
 __author__ = 'zh'
 
@@ -66,6 +67,7 @@ def send_event(event):
 def send_key_action(key, action):
     update_modifier_key_pressed(key, action)
     update_pressed_keys(key, action)
+    time.sleep(0.04)
     _uinput.write(ecodes.EV_KEY, key, action)
     send_sync()
 
