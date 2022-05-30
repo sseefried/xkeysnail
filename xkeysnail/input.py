@@ -6,6 +6,7 @@ from sys import exit
 from .transform import on_event
 from .output import send_event
 from .key import Key
+import re
 
 __author__ = 'zh'
 
@@ -49,7 +50,6 @@ def get_devices_from_paths(device_paths):
 class DeviceFilter(object):
     def __init__(self, matches):
         self.matches = matches
-        matches.append("Logitech ERGO K860") # Add keyboard device
 
     def __call__(self, device):
         # Match by device path or name, if no keyboard devices specified, picks up keyboard-ish devices.
@@ -58,6 +58,11 @@ class DeviceFilter(object):
                 if device.fn == match or device.name == match:
                     return True
             return False
+        defaults = [ "Logitech ERGO K860"]
+        for default in defaults:
+          if re.search(default, device.name):
+              return True
+
         # Exclude none keyboard devices
         if not is_keyboard_device(device):
             return False
