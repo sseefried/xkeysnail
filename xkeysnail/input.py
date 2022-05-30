@@ -49,6 +49,7 @@ def get_devices_from_paths(device_paths):
 class DeviceFilter(object):
     def __init__(self, matches):
         self.matches = matches
+        matches.append("Logitech ERGO K860") # Add keyboard device
 
     def __call__(self, device):
         # Match by device path or name, if no keyboard devices specified, picks up keyboard-ish devices.
@@ -175,4 +176,3 @@ def remove_device(devices, device):
         device.ungrab()
     except OSError as e:
         pass
-
